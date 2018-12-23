@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">火星文</string>
+    <string name="replace">转换</string>
+    <string name="copy">复制</string>
+</resources>

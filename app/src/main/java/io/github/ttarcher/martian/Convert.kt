@@ -130,7 +130,7 @@ const val MARTIAN_CHAR = "娿婀埃挨餀呃哀皑癌蔼婑銰碍嬡隘鞍氨鮟
 /**
  * 通用字符转换为火星文
  */
-fun String.mconvert() = this.toCharArray().map { CHAR_MAP[it] }.joinToString("")
+fun String.mconvert() = this.toCharArray().map { CHAR_MAP[it] ?: it }.joinToString("")
 
 
 val CHAR_MAP: Map<Char, Char> = COMMON_CHAR.associate { Pair(it, MARTIAN_CHAR[COMMON_CHAR.indexOf(it)]) }
