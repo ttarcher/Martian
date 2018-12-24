@@ -27,24 +27,23 @@ class ProcessActivity : AppCompatActivity() {
         convertString = intent.getStringExtra(Intent.EXTRA_PROCESS_TEXT).mconvert()
         textContent.text = convertString
 
-    }
+        constraintLayout.setOnClickListener {
+            finish()
+        }
 
-    fun finish(v: View) {
-        finish()
-    }
+        btnCopy.setOnClickListener {
+            val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            val data = cm.primaryClip
+            data?.addItem(ClipData.Item(textContent.text))
+            cm.primaryClip = data
+            finish()
+        }
 
-    fun copy(v: View) {
-        val cm = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-        val data = cm.primaryClip
-        data?.addItem(ClipData.Item(textContent.text))
-        cm.primaryClip = data
-        finish()
-    }
-
-    fun replace(v: View) {
-        val resultIntent = Intent()
-        resultIntent.putExtra(Intent.EXTRA_PROCESS_TEXT, convertString)
-        setResult(Activity.RESULT_OK, resultIntent)
-        finish()
+        btnReplace.setOnClickListener {
+            val resultIntent = Intent()
+            resultIntent.putExtra(Intent.EXTRA_PROCESS_TEXT, convertString)
+            setResult(Activity.RESULT_OK, resultIntent)
+            finish()
+        }
     }
 }
